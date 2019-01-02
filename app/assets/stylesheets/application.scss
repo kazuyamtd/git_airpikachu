@@ -2,22 +2,26 @@
 @import "bootstrap";
 @import "toastr";
 
-.body{
+.body {
     color: #565a5c; 
     background-color: #F8F8F8;
     font-family: "Verela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-a{
+a {
     color: #00A699;
 }
 
-.container{
+.container {
     width: 80%;
 }
 
-.text-babu, .icon-babu{
+.text-babu, .icon-babu {
     color: #00A699;
+}
+
+.text-red, .icon-red {
+    color: #FF5A5F;    
 }
 
 //navbar
@@ -323,4 +327,16 @@ a{
     right: 0;
     width: 450px;
     height: 100px;
+}
+
+//home page
+.discovery-card {
+    background-size: cover;
+    background-position: center;
+    height: 326px;
+}
+
+.banner {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
