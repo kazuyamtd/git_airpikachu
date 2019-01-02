@@ -1,0 +1,120 @@
+<div id="main">
+    <div id="left">
+        <!--search panel-->
+        <div class="row">
+            <br/>
+            <div id="collapsePanel">
+                
+                <%= search_form_for @search, url: search_path do |f| %>
+                
+                    <div class="row">
+                        <div class="col-md-8">
+                            <labeL>Price Range:</labeL>
+                        </div>
+                        <div class="col-md-2">
+                            <%= f.text_field :price_gteq, class: "form-control" %>
+                        </div>
+                        <div class="col-md-2">
+                            <labeL>Max Price:</labeL>
+                            <%= f.text_field :price_lteq, class: "form-control" %>
+                        </div>
+                    </div>
+                    <hr/>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <%= text_field_tag :start_time, params[:start_time], readonly: true,  placeholder: "Start Date", class: "form-control datepicker" %>
+                        </div>
+                        <div class="col-md-6">
+                            <%= text_field_tag :end_date, params[:end_date], readoly: true, placeholder: "End Date", class: "form-control datepicker" %>
+                        </div>
+                    </div>
+                    <hr/>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Entire" %>Entire Room
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Private" %>Private
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Shared" %>Shared
+                        </div>
+                    </div>
+                    <hr/>
+                
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group select">
+                                <label>Accommodate</label>
+                                <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "accommodate", prompt: "Select....", class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group select">
+                                <label>Bed Rooms</label>
+                                <%= f.select :bed_room_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "bed_room", prompt: "Select....", class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group select">
+                                <label>Bathrooms</label>
+                                <%= f.select :bath_room_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "bath_room", prompt: "Select....", class: "form-control" %>
+                            </div>
+                        </div>
+                    </div>  
+                    <hr/>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[is_tv_eq]", true %>TV
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[is_kitchen_eq]", true %>Kitchen
+                        </div><div class="col-md-4">
+                            <%= check_box_tag "q[is_internet_eq]", true %>Internet
+                        </div><div class="col-md-4">
+                            <%= check_box_tag "q[is_heating_eq]", true %>Heating
+                        </div><div class="col-md-4">
+                            <%= check_box_tag "q[is_air_eq]", true %>Air Conditioning
+                        </div>
+                    </div>
+                    <hr/>
+                    
+                    <div class="row text-center">
+                        <%= f.submit "Search", class: "btn btn-form" %>
+                    </div>
+                <% end %>
+            </div>
+            <br/>
+            
+            
+            
+        </div>
+    </div>
+    <div id="right">
+        <!--    google map-->
+    </div>
+</div>
+
+<script>
+    $('#start_time').datepicker({
+          dateFormat: 'dd-mm-yy',
+          minDate: 0,
+          maxDate: '3m',
+          onSelect: function(selected) {
+            $('#end_date').datepicker("option", "minDate", selected);
+            $('#end_date').attr("disabled", false);
+          }
+    });
+    
+    $('#end_date').datepicker({
+          dateFormat: 'dd-mm-yy',
+          minDate: 0,
+          maxDate: '3m',
+          onSelect: function(selected) {
+            $('#start_time').datepicker("option", "maxDate", selected);
+          }
+    });
+</script>
