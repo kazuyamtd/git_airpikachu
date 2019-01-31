@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       @rooms_address = Room.where(active: true).all
     end
     
-    @search = @room_address.ransack(params[:q])
+    @search = @rooms_address.ransack(params[:q])
     @rooms = @search.result
     
     @arrRooms = @rooms.to_a
@@ -28,12 +28,14 @@ class PagesController < ApplicationController
       @room.each do |room|
         
         not_available = room.reservation.where(
-            "(? <= start_time and start_time <= ?)
+            "((? <= start_time and start_time <= ?)
             OR (? <= end_date and end_date <= ?)
-            OR (start_time < ? AND end_date)",
+            OR (start_time < ? AND end_date))
+            AND status = ?",
             start_time, end_date, 
             start_time, end_date, 
-            start_time, end_date
+            start_time, end_date,
+            1
           ).limt(1)
           
           if not_available.length > 0
