@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190131020016) do
+ActiveRecord::Schema.define(version: 20190201122515) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "sender_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20190131020016) do
     t.string   "image"
     t.string   "phone_number"
     t.text     "description",            limit: 65535
+    t.string   "stripe_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
